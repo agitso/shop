@@ -1,12 +1,6 @@
 {
     "name": "ag/shop",
     "type": "typo3-flow-package",
-	"repositories": [
-		{
-			"type":"vcs",
-			"url":"https://github.com/agitso/event.git"
-		}
-	],
     "description": "",
     "version": "",
     "require": {

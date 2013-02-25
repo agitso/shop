@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+	<h1>Confirm order</h1>
+	<p>
+		Order ID: {order.orderId}<br />
+		Your name: {order.customer}<br />
+		Product: {order.sku}<br />
+		Quantity: {order.quantity}
+	</p>
+	<f:form action="completeOrder" arguments="{orderId:order.orderId}" absolute="1">
+		<f:form.submit value="Confirm" />
+	</f:form>
+</f:section>

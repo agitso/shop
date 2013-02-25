@@ -1,0 +1,28 @@
+html,body {
+	font-family: Arial;
+}
+
+#container, header {
+	width: 900px;
+	margin: 0 auto;
+}
+
+header {
+	border-bottom: solid 1px #000;
+	font-size: 40px;
+	margin-bottom: 10px;
+	padding: 10px 0;
+}
+
+header a {
+	color: #000;
+	text-decoration: none;
+}
+
+#newItemForm {
+	display: block;
+	border-bottom: solid #000 1px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+
+}

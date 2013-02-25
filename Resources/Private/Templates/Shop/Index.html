@@ -1,0 +1,35 @@
+<f:layout name="Default" />
+
+<f:section name="Content">
+
+	<f:form action="new" id="newItemForm" absolute="1">
+		<label>Create inventory item: </label><f:form.textfield name="title" placeholder="Title" />
+		<f:form.textfield name="price" placeholder="Price" />
+		<f:form.textfield name="inStock" placeholder="Quantity in stock" />
+		<f:form.submit value="Create" />
+	</f:form>
+
+	<f:if condition="{products}">
+		<f:then>
+			<ul class="product-list">
+				<f:for each="{products}" as="product">
+					<li>
+						<p>
+							<b>{product.title}</b><br />
+							{product.inStock} in stock.<br />
+							Price: {product.price}
+						</p>
+						<f:form action="placeOrder" arguments="{sku:product.sku}" absolute="1">
+							<f:form.textfield name="customer" placeholder="Your name" />
+							<f:form.textfield name="quantity" placeholder="Quantity" /> <f:form.submit value="Buy" />
+						</f:form>
+					</li>
+				</f:for>
+			</ul>
+
+		</f:then>
+		<f:else>
+			No products.
+		</f:else>
+	</f:if>
+</f:section>
