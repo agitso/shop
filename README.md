@@ -9,7 +9,7 @@ A lot of inspiration from the book: https://vaughnvernon.co/?page_id=168
 
 # The example shows among other things:
 - The use of modules that communicates using application services and shares information using value objects
-- The use of aggregates to ensure invariants (such as the in stock var. on inventory items)
+- The use of aggregates to ensure invariants (such as the in stock property on inventory items)
 - The use of optimistic locking on aggregates with @ORM\Version (to avoid two concurrent processes overwrite each others changes to an aggregate)
 - The use of domain events to communicate between aggregates
 - Eventuel consistency between aggregates using domain events
