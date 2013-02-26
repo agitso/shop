@@ -1,12 +1,12 @@
 <?php
-namespace Ag\Shop\Inventory\Service;
+namespace Ag\Shop\Inventory\Service\Event;
 
 use TYPO3\Flow\Annotations as Flow;
 
 /**
  * @Flow\Scope("singleton")
  */
-class EventSubscriberService {
+class StockUpdaterService {
 
 	/**
 	 * @var \Ag\Shop\Inventory\Domain\Repository\InventoryItemRepository
@@ -31,6 +31,7 @@ class EventSubscriberService {
 	 * @Flow\Inject
 	 */
 	protected $systemLogger;
+
 
 	/**
 	 * @param \Ag\Shop\Inventory\Domain\Event\OrderCompletedEvent $event
@@ -58,14 +59,6 @@ class EventSubscriberService {
 		if (!$completed) {
 			$this->systemLogger->log('Could not successfully update inventory stock from order ' . $order->getOrderId(), LOG_CRIT);
 		}
-	}
-
-	/**
-	 * @param \Ag\Shop\Inventory\Domain\Event\InventoryItemOutOfStockEvent $event
-	 */
-	public function onInventoryItemOutOfStockSendMailToSupplyManager($event) {
-		// For now just log this
-		$this->systemLogger->log('Dear supply manager. Product with SKU ' . $event->getSku(). ' just went out of stock.');
 	}
 }
 ?>

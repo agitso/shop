@@ -15,19 +15,19 @@ class Package extends BasePackage {
 		\Ag\Event\EventRegister::listenFor(
 			$dispatcher,
 			'Ag\Shop\Inventory\Domain\Event\InventoryItemOutOfStockEvent',
-			'Ag\Shop\Inventory\Service\EventSubscriberService', 'onInventoryItemOutOfStockSendMailToSupplyManager'
+			'Ag\Shop\Inventory\Service\Event\SupplyNotificationService', 'onInventoryItemOutOfStockSendMailToSupplyManager'
 		);
 
 		\Ag\Event\EventRegister::listenFor(
 			$dispatcher,
 			'Ag\Shop\Billing\Domain\Event\OrderCompletedEvent',
-			'Ag\Shop\Inventory\Service\EventSubscriberService', 'onOrderCompletedRemoveQuantityFromStock'
+			'Ag\Shop\Inventory\Service\Event\StockUpdaterService', 'onOrderCompletedRemoveQuantityFromStock'
 		);
 
 		\Ag\Event\EventRegister::listenFor(
 			$dispatcher,
 			'Ag\Shop\Billing\Domain\Event\OrderCompletedEvent',
-			'Ag\Shop\Billing\Service\EventSubscriberService', 'onOrderCompletedSendEmailToCustomer'
+			'Ag\Shop\Billing\Service\Event\CustomerReceiptService', 'onOrderCompletedSendReceiptToCustomer'
 		);
 	}
 }
