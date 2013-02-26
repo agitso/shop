@@ -5,7 +5,8 @@
     "version": "",
     "require": {
         "typo3/flow": "*",
-		"ag/event": "*"
+		"ag/event": "*",
+		"ag/email": "*"
     },
     "autoload": {
         "psr-0": {
