@@ -1,0 +1,5 @@
+Ag:
+  Event:
+    listeners:
+      ag_shop_billing: 'sync'
+      ag_shop_inventory: 'sync'

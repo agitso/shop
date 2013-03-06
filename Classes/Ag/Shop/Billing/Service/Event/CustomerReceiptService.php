@@ -21,7 +21,7 @@ class CustomerReceiptService {
 	protected $emailService;
 
 	/**
-	 * @param \Ag\Shop\Inventory\Domain\Event\OrderCompletedEvent $event
+	 * @param \Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event
 	 */
 	public function onOrderCompletedSendReceiptToCustomer($event) {
 		$order = $this->orderRepository->findByIdentifier($event->getOrderId());

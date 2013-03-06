@@ -12,22 +12,14 @@ class Package extends BasePackage {
 	public function boot(\TYPO3\Flow\Core\Bootstrap $bootstrap) {
 		$dispatcher = $bootstrap->getSignalSlotDispatcher();
 
-		\Ag\Event\EventRegister::listenFor(
-			$dispatcher,
-			'Ag\Shop\Inventory\Domain\Event\InventoryItemOutOfStockEvent',
-			'Ag\Shop\Inventory\Service\Event\SupplyNotificationService', 'onInventoryItemOutOfStockSendMailToSupplyManager'
+		$dispatcher->connect(
+			'Ag\Event\Service\EventService', 'ag_shop_inventory',
+			'Ag\Shop\Inventory\Service\Event\EventService', 'listen'
 		);
 
-		\Ag\Event\EventRegister::listenFor(
-			$dispatcher,
-			'Ag\Shop\Billing\Domain\Event\OrderCompletedEvent',
-			'Ag\Shop\Inventory\Service\Event\StockUpdaterService', 'onOrderCompletedRemoveQuantityFromStock'
-		);
-
-		\Ag\Event\EventRegister::listenFor(
-			$dispatcher,
-			'Ag\Shop\Billing\Domain\Event\OrderCompletedEvent',
-			'Ag\Shop\Billing\Service\Event\CustomerReceiptService', 'onOrderCompletedSendReceiptToCustomer'
+		$dispatcher->connect(
+			'Ag\Event\Service\EventService', 'ag_shop_billing',
+			'Ag\Shop\Billing\Service\Event\EventService', 'listen'
 		);
 	}
 }
