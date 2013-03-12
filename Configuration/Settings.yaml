@@ -1,5 +1,6 @@
 Ag:
   Event:
-    listeners:
-      ag_shop_billing: 'sync'
-      ag_shop_inventory: 'sync'
+    eventHandlers:
+      sync:
+        - 'Ag\Shop\Inventory\EventHandler\EventHandler'
+        - 'Ag\Shop\Billing\EventHandler\EventHandler'

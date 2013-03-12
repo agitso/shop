@@ -1,12 +1,12 @@
 <?php
-namespace Ag\Shop\Billing\Service\Event;
+namespace Ag\Shop\Billing\EventHandler\Ag\Shop\Billing;
 
 use TYPO3\Flow\Annotations as Flow;
 
 /**
  * @Flow\Scope("singleton")
  */
-class CustomerReceiptService {
+class OrderCompletedEventHandler {
 
 	/**
 	 * @var \Ag\Shop\Billing\Domain\Repository\OrderRepository
@@ -22,17 +22,19 @@ class CustomerReceiptService {
 
 	/**
 	 * @param \Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event
+	 * @return void
 	 */
-	public function onOrderCompletedSendReceiptToCustomer($event) {
+	public function handle(\Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event) {
 		$order = $this->orderRepository->findByIdentifier($event->getOrderId());
 		$orderDescriptor = $order->getDescriptor();
 
 		$this->emailService->send(
 			$orderDescriptor->getCustomer(),
 			'customer@domain.tld',
-			'Receipt for order #'.$orderDescriptor->getOrderId(),
-			'This is your receipt with order id #'.$orderDescriptor->getOrderId()
+				'Receipt for order #' . $orderDescriptor->getOrderId(),
+				'This is your receipt with order id #' . $orderDescriptor->getOrderId()
 		);
 	}
 }
+
 ?>

@@ -1,12 +1,12 @@
 <?php
-namespace Ag\Shop\Inventory\Service\Event;
+namespace Ag\Shop\Inventory\EventHandler\Ag\Shop\Billing;
 
 use TYPO3\Flow\Annotations as Flow;
 
 /**
  * @Flow\Scope("singleton")
  */
-class StockUpdaterService {
+class OrderCompletedEventHandler {
 
 	/**
 	 * @var \Ag\Shop\Inventory\Domain\Repository\InventoryItemRepository
@@ -32,11 +32,11 @@ class StockUpdaterService {
 	 */
 	protected $systemLogger;
 
-
 	/**
-	 * @param \Ag\Shop\Inventory\Domain\Event\OrderCompletedEvent $event
+	 * @param \Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event
+	 * @return void
 	 */
-	public function onOrderCompletedRemoveQuantityFromStock($event) {
+	public function handle(\Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event) {
 		$order = $this->orderService->getOrder($event->getOrderId());
 
 		$completed = FALSE;
@@ -61,4 +61,5 @@ class StockUpdaterService {
 		}
 	}
 }
+
 ?>
