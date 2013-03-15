@@ -97,7 +97,14 @@ class InventoryItem {
 	 * @return InventoryItemDescriptor
 	 */
 	public function getDescriptor() {
-		return new InventoryItemDescriptor($this->sku, $this->title, $this->price, $this->inStock);
+
+		$d = new InventoryItemDescriptor();
+		$d->price = $this->price;
+		$d->title = $this->title;
+		$d->inStock = $this->inStock;
+		$d->sku = $this->sku;
+
+		return $d;
 	}
 
 	/**

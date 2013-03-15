@@ -21,6 +21,12 @@ class OrderService {
 	protected $persistenceManager;
 
 	/**
+	 * @var \Ag\Event\Service\EventService
+	 * @Flow\Inject
+	 */
+	protected $eventService;
+
+	/**
 	 * @param int $orderId
 	 * @return \Ag\Shop\Billing\Domain\Model\OrderDescriptor|null
 	 */
@@ -61,7 +67,7 @@ class OrderService {
 			throw new \InvalidArgumentException('No order found.');
 		}
 
-		$order->complete();
+		$order->complete($this->eventService);
 
 		$this->orderRepository->update($order);
 		$this->persistenceManager->persistAll();

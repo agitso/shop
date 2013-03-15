@@ -25,14 +25,14 @@ class OrderCompletedEventHandler {
 	 * @return void
 	 */
 	public function handle(\Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event) {
-		$order = $this->orderRepository->findByIdentifier($event->getOrderId());
+		$order = $this->orderRepository->findByIdentifier($event->orderId);
 		$orderDescriptor = $order->getDescriptor();
 
 		$this->emailService->send(
-			$orderDescriptor->getCustomer(),
+			$orderDescriptor->customer,
 			'customer@domain.tld',
-				'Receipt for order #' . $orderDescriptor->getOrderId(),
-				'This is your receipt with order id #' . $orderDescriptor->getOrderId()
+				'Receipt for order #' . $orderDescriptor->orderId,
+				'This is your receipt with order id #' . $orderDescriptor->orderId
 		);
 	}
 }

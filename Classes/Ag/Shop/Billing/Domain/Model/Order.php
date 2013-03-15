@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Order {
 
 	/**
-	 * @var \Ag\Event\Service\EventService
-	 * @Flow\Inject
-	 */
-	protected $eventService;
-
-	/**
 	 * @var int
 	 * @ORM\Version
 	 */
@@ -96,16 +90,17 @@ class Order {
 	}
 
 	/**
+	 * @param \Ag\Event\Service\EventService $eventService
 	 * @return void
 	 */
-	public function complete() {
+	public function complete($eventService) {
 		if ($this->isCompleted()) {
 			return;
 		}
 
 		$this->completed = TRUE;
 
-		$this->eventService->publish(new \Ag\Shop\Billing\Domain\Event\OrderCompletedEvent($this->orderId));
+		$eventService->publish(new \Ag\Shop\Billing\Domain\Event\OrderCompletedEvent($this->orderId));
 	}
 
 	/**
@@ -119,7 +114,14 @@ class Order {
 	 * @return \Ag\Shop\Billing\Domain\Model\OrderDescriptor
 	 */
 	public function getDescriptor() {
-		return new \Ag\Shop\Billing\Domain\Model\OrderDescriptor($this->orderId, $this->customer, $this->sku, $this->quantity, $this->completed);
+		$d = new OrderDescriptor();
+		$d->orderId = $this->orderId;
+		$d->customer = $this->customer;
+		$d->sku = $this->sku;
+		$d->quantity = $this->quantity;
+		$d->completed = $this->completed;
+
+		return $d;
 	}
 
 

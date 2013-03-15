@@ -21,8 +21,8 @@ class InventoryItemOutOfStockEventHandler {
 		$this->emailService->send(
 			'Supply Manager',
 			'supply@domain.tld',
-				'Product with SKU ' . $event->getSku() . ' just went out of stock.',
-				'Dear supply manager.' . chr(10) . 'Product with SKU ' . $event->getSku() . ' just went out of stock.'
+				'Product with SKU ' . $event->sku . ' just went out of stock.',
+				'Dear supply manager.' . chr(10) . 'Product with SKU ' . $event->sku . ' just went out of stock.'
 		);
 	}
 }

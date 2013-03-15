@@ -6,7 +6,7 @@ class InventoryItemOutOfStockEvent extends \Ag\Event\Domain\Model\DomainEvent {
 	/**
 	 * @var string
 	 */
-	protected $sku;
+	public $sku;
 
 	/**
 	 * @param string $sku
@@ -15,14 +15,5 @@ class InventoryItemOutOfStockEvent extends \Ag\Event\Domain\Model\DomainEvent {
 		parent::__construct();
 		$this->sku = $sku;
 	}
-
-	/**
-	 * @return string
-	 */
-	public function getSku() {
-		return $this->sku;
-	}
-
-
 }
 ?>
