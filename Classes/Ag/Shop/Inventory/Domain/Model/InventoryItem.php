@@ -46,12 +46,14 @@ class InventoryItem {
 	 * @param string $title
 	 * @param float $price
 	 * @param int $inStock
+	 * @param \Ag\Event\Service\EventService $eventService
 	 */
-	public function __construct($title, $price, $inStock) {
+	public function __construct($title, $price, $inStock, $eventService) {
 		$this->sku = \TYPO3\Flow\Utility\Algorithms::generateUUID();
 		$this->setTitle($title);
 		$this->setPrice($price);
 		$this->setInStock($inStock);
+		$eventService->publish(new \Ag\Shop\Inventory\Domain\Event\InventoryItemCreatedEvent($this->sku));
 	}
 
 	/**

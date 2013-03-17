@@ -21,6 +21,12 @@ class InventoryItemService {
 	protected $persistenceManager;
 
 	/**
+	 * @var \Ag\Event\Service\EventService
+	 * @Flow\Inject
+	 */
+	protected $eventService;
+
+	/**
 	 * @return array
 	 */
 	public function getInventoryItemsForCatalog() {
@@ -52,7 +58,7 @@ class InventoryItemService {
 	 * @return \Ag\Shop\Inventory\Domain\Model\InventoryItemDescriptor
 	 */
 	public function createInventoryItem($title, $price, $inStock) {
-		$item = new \Ag\Shop\Inventory\Domain\Model\InventoryItem($title, $price, $inStock);
+		$item = new \Ag\Shop\Inventory\Domain\Model\InventoryItem($title, $price, $inStock, $this->eventService);
 
 		$this->itemRepository->add($item);
 		$this->persistenceManager->persistAll();
