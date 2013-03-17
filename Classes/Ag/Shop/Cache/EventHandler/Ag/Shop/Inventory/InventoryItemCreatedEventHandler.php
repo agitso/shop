@@ -1,5 +1,5 @@
 <?php
-namespace Ag\Shop\Cache\EventHandler\Ag\Shop\Billing;
+namespace Ag\Shop\Cache\EventHandler\Ag\Shop\Inventory;
 
 use TYPO3\Flow\Annotations as Flow;
 use \TYPO3\Flow\Configuration\ConfigurationManager as ConfigurationManager;
