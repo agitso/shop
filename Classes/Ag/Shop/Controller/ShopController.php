@@ -30,6 +30,20 @@ class ShopController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	}
 
 	/**
+	 * @param string $sku
+	 * @Cache\Expire(seconds="3600")
+	 */
+	public function showAction($sku){
+		$product = $this->inventoryItemService->getInventoryItem($sku);
+
+		if(empty($product)) {
+			$this->redirect('index');
+		}
+
+		$this->view->assign('product', $product);
+	}
+
+	/**
 	 * @param string $title
 	 * @param float $price
 	 * @param int $inStock

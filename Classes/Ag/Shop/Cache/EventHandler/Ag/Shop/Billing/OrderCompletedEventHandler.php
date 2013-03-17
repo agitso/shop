@@ -15,6 +15,11 @@ class OrderCompletedEventHandler {
 	 */
 	protected $banService;
 
+	/**
+	 * @var \Ag\Shop\Billing\Service\OrderService
+	 * @Flow\Inject
+	 */
+	protected $orderService;
 
 	/**
 	 * @var \TYPO3\Flow\Mvc\Routing\UriBuilder
@@ -43,7 +48,11 @@ class OrderCompletedEventHandler {
 	 * @return void
 	 */
 	public function handle(\Ag\Shop\Billing\Domain\Event\OrderCompletedEvent $event) {
+		$order = $this->orderService->getOrder($event->orderId);
+
 		$this->banService->ban($this->uriBuilder->uriFor('index', array(), 'Shop', 'Ag.Shop', NULL));
+		$this->banService->ban($this->uriBuilder->uriFor('show', array('sku'=>$order->sku), 'Shop', 'Ag.Shop', NULL));
+
 	}
 }
 

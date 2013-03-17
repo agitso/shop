@@ -33,6 +33,19 @@ class InventoryItemService {
 	}
 
 	/**
+	 * @param string $sku
+	 * @return \Ag\Shop\Inventory\Domain\Model\InventoryItemDescriptor|null
+	 */
+	public function getInventoryItem($sku) {
+		$item = $this->itemRepository->findByIdentifier($sku);
+		if(empty($item)) {
+			return NULL;
+		}
+
+		return $item->getDescriptor();
+	}
+
+	/**
 	 * @param string $title
 	 * @param string $price
 	 * @param int $inStock

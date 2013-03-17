@@ -1,0 +1,17 @@
+<f:layout name="Default"/>
+
+<f:section name="Content">
+
+	<h1>{product.title}</h1>
+
+	<p>
+		{product.inStock} in stock.<br/>
+		Price: {product.price}
+	</p>
+	<f:form action="placeOrder" arguments="{sku:product.sku}" absolute="1">
+		<f:form.textfield name="customer" placeholder="Your name"/>
+		<f:form.textfield name="quantity" placeholder="Quantity"/>
+		<f:form.submit value="Buy"/>
+	</f:form>
+
+</f:section>

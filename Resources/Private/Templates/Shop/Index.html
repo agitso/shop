@@ -15,7 +15,7 @@
 				<f:for each="{products}" as="product">
 					<li>
 						<p>
-							<b>{product.title}</b><br />
+							<b><f:link.action action="show" arguments="{sku:product.sku}">{product.title}</f:link.action></b><br />
 							{product.inStock} in stock.<br />
 							Price: {product.price}
 						</p>
