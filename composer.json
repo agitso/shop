@@ -6,7 +6,8 @@
     "require": {
         "typo3/flow": "*",
 		"ag/event": "*",
-		"ag/email": "*"
+		"ag/email": "*",
+		"ag/cache": "*"
     },
     "autoload": {
         "psr-0": {
