@@ -4,4 +4,3 @@ Ag:
       sync:
         - 'Ag\Shop\Inventory\EventHandler\EventHandler'
         - 'Ag\Shop\Billing\EventHandler\EventHandler'
-        - 'Ag\Shop\Cache\EventHandler\EventHandler'

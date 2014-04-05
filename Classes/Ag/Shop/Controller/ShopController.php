@@ -2,7 +2,6 @@
 namespace Ag\Shop\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
-use Ag\Cache\Annotations as Cache;
 
 /**
  * @Flow\Scope("singleton")
@@ -23,7 +22,6 @@ class ShopController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * @return void
-	 * @Cache\Expire(seconds="3600")
 	 */
 	public function indexAction() {
 		$this->view->assign('products', $this->inventoryItemService->getInventoryItemsForCatalog());
@@ -31,7 +29,6 @@ class ShopController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * @param string $sku
-	 * @Cache\Expire(seconds="3600")
 	 */
 	public function showAction($sku){
 		$product = $this->inventoryItemService->getInventoryItem($sku);
