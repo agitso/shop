@@ -4,10 +4,9 @@
     "description": "",
     "version": "",
     "require": {
-        "typo3/flow": "*",
-		"ag/event": "*",
-		"ag/email": "*",
-		"ag/cache": "*"
+		"typo3/flow": "2.1.*",
+		"ag/event": "@dev",
+		"ag/email": "@dev"
     },
     "autoload": {
         "psr-0": {
